@@ -8,7 +8,7 @@ export const Videos = () => {
   const [videos, setVideos] = useState([]);
   useEffect(() => {
     fetch(
-      `${playVideos}?partpart=snippet&chart=mostPopular&maxResults=20&key=${API}`
+      `${playVideos}?&key=${API}&partpart=snippet&chart=mostPopular&maxResults=20`
     )
       .then((data) => data.json())
       .then((res) => {
