@@ -1,7 +1,8 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
 import { gapi, loadAuth2 } from "gapi-script";
-
+import { ContentContext } from "./UseContex";
+import { useContext } from "react";
 import { updateLanguageServiceSourceFile } from "typescript";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -12,7 +13,7 @@ const clientId =
 export const Login = () => {
   const [loged, setloged] = useState(false);
   const [user, setUser] = useState(null);
-
+  const { setAccessToken } = useContext(ContentContext);
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setloged(true);
@@ -23,11 +24,15 @@ export const Login = () => {
 
   useEffect(() => {
     const setAuth2 = async () => {
-      const auth2 = await loadAuth2(gapi, clientId, "");
+      const auth2 = await loadAuth2(
+        gapi,
+        clientId,
+        "https://www.googleapis.com/auth/youtube"
+      );
       if (auth2.isSignedIn.get()) {
-        auth2.signOut();
+        // auth2.signOut();
         console.log("Signed in");
-        // updateUser(auth2.currentUser.get());
+        updateUser(auth2.currentUser.get());
       } else {
         attachSignin(document.getElementById("customBtn"), auth2);
       }
@@ -50,6 +55,7 @@ export const Login = () => {
   const updateUser = (currentUser) => {
     const name = currentUser.getBasicProfile().getName();
     const profileImg = currentUser.getBasicProfile().getImageUrl();
+    setAccessToken(currentUser.xc.access_token);
     setUser({
       name: name,
       profileImg: profileImg,
