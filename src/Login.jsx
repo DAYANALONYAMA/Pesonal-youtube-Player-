@@ -1,4 +1,5 @@
 import React from "react";
+import "./Login.css";
 import { GoogleLogin } from "react-google-login";
 import { gapi, loadAuth2 } from "gapi-script";
 import { ContentContext } from "./UseContex";
@@ -6,6 +7,7 @@ import { useContext } from "react";
 import { updateLanguageServiceSourceFile } from "typescript";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const clientId =
   "75561947803-50o77b5j1s3e3g8p84fmhln95d7da99u.apps.googleusercontent.com";
@@ -14,6 +16,7 @@ export const Login = () => {
   const [loged, setloged] = useState(false);
   const [user, setUser] = useState(null);
   const { setAccessToken } = useContext(ContentContext);
+  const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setloged(true);
@@ -60,6 +63,7 @@ export const Login = () => {
       name: name,
       profileImg: profileImg,
     });
+    navigate("/videos");
   };
 
   const attachSignin = (element, auth2) => {
@@ -69,7 +73,6 @@ export const Login = () => {
       (googleUser) => {
         console.log(googleUser);
         localStorage.setItem("token", googleUser.xc.access_token);
-
         updateUser(googleUser);
       },
       (error) => {
@@ -102,18 +105,27 @@ export const Login = () => {
   // Ahh
   console.log(loged);
   return (
-    <div className="container">
-      <div
-        id="customBtn"
-        className="btn
+    <>
+      <div className="container-login">
+        <div className="container-text">
+          <h1 className="text-welcome">welcome back</h1>
+          <h1 className="Titus">TitusSlow</h1>
+        </div>
+        <div className="Contenair-btn">
+          <div
+            id="customBtn"
+            className="btn-login
       "
-      >
-        <button>Login</button>
+          >
+            <button>Login</button>
+          </div>
+          {/* </div> */}
+          <div className="btn-logout" onClick={() => signOut()}>
+            <button>Logout</button>
+          </div>
+        </div>
       </div>
-      <div id="customBtn" className="btn logout" onClick={() => signOut()}>
-        <button>Logout</button>
-      </div>
-    </div>
+    </>
   );
 };
 

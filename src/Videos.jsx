@@ -1,12 +1,12 @@
 import react, { useEffect, useState } from "react";
-import axios from "axios";
 import { ContentContext } from "./UseContex";
 import { useContext } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./Videos.css";
 // import { useParams } from "react-router-dom";
 
 const API = "AIzaSyDwekjqZuYGZgLhG8hRc3rzv-e6oNxYpsk";
-const channelId = "UCfESPIhHYMAAUkq3vmipacg";
+// const channelId = "UCfESPIhHYMAAUkq3vmipacg";
 const playVideos = "https://youtube.googleapis.com/youtube/v3/videos";
 // let fetchurl = `https://www.googleapis.com/youtube/v3/search?key=${API}&channelId=${channelId}&part=snippet,id&order=date&maxResults=20`;
 
@@ -34,28 +34,50 @@ function Videos() {
   }, [accessToken]);
   console.log(videos);
   return (
-    <di>
-      <h1>Hello</h1>
-      {videos &&
-        videos.map((data, index) => {
-          return (
-            // <Link to={`/VideosPlaying/${data.id}`}>
-            <div key={index}>
-              <img
-                src={data.snippet.thumbnails.medium.url}
-                alt=""
-                className="card-image"
-              />
-              <h3>{data.snippet.title} </h3>
-              <h4>{data.snippet.channelTitle} </h4>
-              <h5>{data.statistics.viewCount} </h5>
-              <h5>{data.snippet.publishedAt} </h5>
-            </div>
-            //{" "}
-            // </Link>
-          );
-        })}
-    </di>
+    <>
+      <div className="contenair-videos">
+        <div className="contenair-header">
+          <di className="logo">
+            <h1>TitusSlow</h1>
+          </di>
+          <div className="side-bar">
+            <img src="iconmonstr-home-thin.svg"></img>
+            <Link to="/Channel">
+              <img src="iconmonstr-heart-thin.svg"></img>
+            </Link>
+            <img src="iconmonstr-view-6.svg"></img>
+          </div>
+        </div>
+
+        <div className="video-card">
+          <div className="bar-recherche">
+            <input type="text"></input>
+          </div>
+          <div className="videos">
+            {videos &&
+              videos.map((data, index) => {
+                return (
+                  <Link to={`/VideosPlaying/${data.id}`}>
+                    <div key={index}>
+                      <img
+                        src={data.snippet.thumbnails.medium.url}
+                        alt=""
+                        className="card-image"
+                      />
+                      <div className="info-video">
+                        <h3>{data.snippet.title} </h3>
+                        <h4>{data.snippet.channelTitle} </h4>
+                        {/* <h5>{data.statistics.viewCount} </h5> */}
+                        <h5>{data.snippet.publishedAt} </h5>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -5,6 +5,8 @@ import { ContentContext } from "./UseContex";
 import Videos from "./Videos";
 import { useEffect, useState } from "react";
 import VideosPlaying from "./VideosPlaying";
+import { Channel } from "./Channel";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const clientId =
   "75561947803-50o77b5j1s3e3g8p84fmhln95d7da99u.apps.googleusercontent.com";
@@ -23,20 +25,29 @@ export function App() {
 
   return (
     <div>
-      <ContentContext.Provider
-        value={{
-          loginState,
-          setLoginState,
-          imgUrl,
-          setImageUrl,
-          accessToken,
-          setAccessToken,
-        }}
-      >
-        <Login />
-        <Videos />
-        {/* <VideosPlaying /> */}
-      </ContentContext.Provider>
+      <BrowserRouter>
+        <ContentContext.Provider
+          value={{
+            loginState,
+            setLoginState,
+            imgUrl,
+            setImageUrl,
+            accessToken,
+            setAccessToken,
+          }}
+        >
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/videos" element={<Videos />} />
+            <Route path="/videosPlaying/:id" element={<VideosPlaying />} />
+            <Route path="/channel" element={<Channel />} />
+          </Routes>
+
+          {/* <Login />
+          <Videos />
+          <VideosPlaying /> */}
+        </ContentContext.Provider>
+      </BrowserRouter>
     </div>
   );
 }

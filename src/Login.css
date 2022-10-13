@@ -1,0 +1,77 @@
+/* .container-login {
+  padding: auto;
+  width: 100%;
+  background-color: #14203e;
+} */
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  /* background-color: #14203e; */
+/* height: 100%; */
+/* } */
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,300;1,400&display=swap");
+* {
+  font-family: "Lato", sans-serif;
+}
+
+.container-login {
+  /* border:1px solid red; */
+  display: flex;
+  flex-direction: row;
+  height: 96vh;
+  width: 96vw;
+  /* padding: auto;
+  width: 50%;
+  background-color: black;
+  color: #d76c58;
+  /* margin: 10vh auto 66.2vh auto; */
+  /* height: 100vh; */
+}
+
+.container-text {
+  border-top-right-radius: 16% 17%;
+  border-bottom-right-radius: 16% 17%;
+
+  align-items: center;
+  color: #d76c58;
+  /* border: solid yellow 2px; */
+  flex: 50%;
+  flex-direction: column;
+  justify-content: center;
+  background-color: black;
+  display: flex;
+}
+
+.container-text h1 {
+  margin: 80px 0;
+}
+.text-welcome {
+  font-size: 50px;
+}
+
+.btn-login button {
+  /* margin-bottom: 30%; */
+
+  width: 165px;
+  border-radius: 10px;
+  height: 45px;
+  border: none;
+  font-size: 20px;
+  color: #d76c58;
+  background-color: black;
+}
+.Contenair-btn {
+  align-items: center;
+  justify-content: center;
+  flex: 50%;
+  /* border: solid green 4px; */
+  display: flex;
+}
+.btn-logout {
+  visibility: hidden;
+}
