@@ -9,41 +9,46 @@
   flex-direction: column;
   border: green solid 2px;
 }
-.side-bar {
+/* .side-bar {
+  background-color: #14203e;
   padding: 40px;
   gap: 20px 20px;
-  width: 30vh;
-  height: 30vh;
+
   display: flex;
   flex-direction: column;
   border: yellow solid 2px;
 }
 .side-bar img {
   width: 50px;
-}
+} */
 
 .videos {
-  height: 62.8vh;
-  background-color: black;
-  padding: 50px;
+  overflow-y: scroll;
+
+  justify-content: center;
+  gap: 30px 30px;
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  /* height: 62.8vh; */
+  background-color: black;
+  padding: 10px;
   border: orange solid 2px;
 }
-.contenair-header {
-  width: 40%;
+/* .contenair-header {
   border: black solid 2px;
   flex-direction: row;
-}
-.card-image {
+} */
+/* .card-image {
   width: 50%;
   height: 50%;
-}
+} */
 .bar-recherche {
-  margin-top: 4%;
-  margin-bottom: 4%;
+  border: orchid solid 2px;
+  padding: 40px;
 }
 .bar-recherche input {
-  background-image: url("/🦆\ icon\ _Search_.svg");
+  background-image: url("/magnifying-glass-solid.svg");
   background-repeat: no-repeat;
   background-color: #d76c58;
   width: 30%;
@@ -53,10 +58,28 @@
   border: none;
 }
 
+.info-video {
+  color: #d76c58 !important;
+}
+
 .info-video h3 {
-  color: #d76c58;
   font-weight: 400;
   font-size: 1rem;
-  border: 1px solid blue;
-  height: 70px;
+}
+/* .infos-video h4 {
+  color: #d76c58;
+}
+.infos-video h5 {
+  color: #d76c58;
+} */
+
+.contenair-videos h3 {
+  width: 50%;
+}
+.Link {
+  text-decoration: none;
+}
+.playVideos {
+  display: flex;
+  justify-content: center;
 }

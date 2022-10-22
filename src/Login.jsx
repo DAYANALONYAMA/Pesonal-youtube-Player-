@@ -53,8 +53,6 @@ export const Login = () => {
     }
   }, [user]);
 
-  // aaaa
-
   const updateUser = (currentUser) => {
     const name = currentUser.getBasicProfile().getName();
     const profileImg = currentUser.getBasicProfile().getImageUrl();
@@ -63,7 +61,7 @@ export const Login = () => {
       name: name,
       profileImg: profileImg,
     });
-    navigate("/videos");
+    navigate("/Home");
   };
 
   const attachSignin = (element, auth2) => {
@@ -128,27 +126,3 @@ export const Login = () => {
     </>
   );
 };
-
-// function Login() {
-//   const clientId =
-//     "75561947803-50o77b5j1s3e3g8p84fmhln95d7da99u.apps.googleusercontent.com";
-//   const onSuccess = (res) => {
-//     console.log("LOGIN SUCESS! current user:", res.profileObj);
-//   };
-//   const onFailure = (res) => {
-//     console.log("Login FAILEDI! res:", res);
-//   };
-//   return (
-//     <div id="signInButton">
-//       <GoogleLogin
-//         clientId={clientId}
-//         buttonText="Login"
-//         onSuccess={onSuccess}
-//         onFailure={onFailure}
-//         cookiePolicy={"single_host_origin"}
-//         isSignedIn={true}
-//       />
-//     </div>
-//   );
-// }
-// export default Login;

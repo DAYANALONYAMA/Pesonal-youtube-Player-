@@ -2,7 +2,10 @@ import react, { useEffect, useState } from "react";
 import { ContentContext } from "./UseContex";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { SideBar } from "./SideBar";
 import "./Videos.css";
+// import "./Header.css";
+import { Searchbar } from "./Searchbar";
 // import { useParams } from "react-router-dom";
 
 const API = "AIzaSyDwekjqZuYGZgLhG8hRc3rzv-e6oNxYpsk";
@@ -20,7 +23,7 @@ function Videos() {
   const [videos, setVideo] = useState([]);
   useEffect(() => {
     fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&myRating=like&key=${API}`,
+      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=10&myRating=like&key=${API}`,
       {
         method: "GET",
         headers: new Headers({ Authorization: `Bearer ${accessToken}` }),
@@ -36,28 +39,36 @@ function Videos() {
   return (
     <>
       <div className="contenair-videos">
-        <div className="contenair-header">
-          <di className="logo">
-            <h1>TitusSlow</h1>
-          </di>
-          <div className="side-bar">
-            <img src="iconmonstr-home-thin.svg"></img>
-            <Link to="/Channel">
+        <Searchbar />
+        <SideBar />
+        <di className="logo">{/* <h1>TitusSlow</h1> */}</di>
+        {/* <SideBar /> */}
+
+        {/* <div className="side-bar">
+            <Link to="/home">
+              <img src="iconmonstr-home-thin.svg"></img>
+            </Link>
+            <p>Home</p>
+            <Link to="/Videos">
               <img src="iconmonstr-heart-thin.svg"></img>
             </Link>
-            <img src="iconmonstr-view-6.svg"></img>
-          </div>
-        </div>
+            <Link to="/Channel">
+              <img src="add-user.png"></img>
+            </Link>
+          </div> */}
 
         <div className="video-card">
-          <div className="bar-recherche">
+          {/* <Searchbar />
+          <SideBar /> */}
+          {/* <div className="bar-recherche">
             <input type="text"></input>
-          </div>
+            <img></img>
+          </div> */}
           <div className="videos">
             {videos &&
               videos.map((data, index) => {
                 return (
-                  <Link to={`/VideosPlaying/${data.id}`}>
+                  <Link className="Link" to={`/VideosPlaying/${data.id}`}>
                     <div key={index}>
                       <img
                         src={data.snippet.thumbnails.medium.url}

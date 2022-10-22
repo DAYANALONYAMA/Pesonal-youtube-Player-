@@ -21,6 +21,18 @@ const Navigation = () => {
         to="/Channel"
         className={(nav) => (nav.isActive ? "nav-active" : "")}
       ></NavLink>
+      <NavLink
+        to="/VideosChannel"
+        className={(nav) => (nav.isActive ? "nav-active" : "")}
+      ></NavLink>
+      <NavLink
+        to="/Home"
+        className={(nav) => (nav.isActive ? "nav-active" : "")}
+      ></NavLink>
+      <NavLink
+        to="/searchResul"
+        className={(nav) => (nav.isActive ? "nav-active" : "")}
+      ></NavLink>
     </>
   );
 };
