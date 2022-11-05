@@ -26,8 +26,19 @@ export function App() {
     gapi.load("client:auth2", start);
   });
 
+  const Layout = ({ children }) => {
+    return (
+      <>
+        <div className="app">
+          <Header />
+          <div className="app-page">{children}</div>
+        </div>
+      </>
+    );
+  };
+
   return (
-    <div>
+    <div className="app">
       <BrowserRouter>
         <ContentContext.Provider
           value={{
@@ -42,6 +53,7 @@ export function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/home" element={<Home />} />
+
             <Route path="/videos" element={<Videos />} />
             <Route path="/videosPlaying/:id" element={<VideosPlaying />} />
             <Route path="/channel" element={<Channel />} />

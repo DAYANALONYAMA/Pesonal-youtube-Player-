@@ -1,20 +1,40 @@
-import Videos from "./Videos";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./SideBar.css";
+import { AiFillHome, AiTwotoneLike } from "react-icons/ai";
+import { MdSubscriptions } from "react-icons/md";
 
 export function SideBar() {
   return (
-    <div className="side-bar">
-      <Link to="/home">
-        <img src="iconmonstr-home-thin.svg"></img>
-      </Link>
+    <>
+      <div className="side-bar">
+        {/* <div className={(nav) => (nav.isActive ? "is_active" : "")}> */}
+        <NavLink to="/home" className="link">
+          <AiFillHome className="icon" />
+          <h1>Home</h1>
+        </NavLink>
 
-      <Link to="/Videos">
-        <img src="iconmonstr-heart-thin.svg"></img>
-      </Link>
-      <Link to="/Channel">
-        <img src="add-user.png"></img>
-      </Link>
-    </div>
+        <NavLink to="/Videos" className="link">
+          <AiTwotoneLike className="icon" />
+          <h1>Liked</h1>
+        </NavLink>
+        <NavLink to="/Channel" className="link">
+          <MdSubscriptions className="icon" />
+          <h1>Channel</h1>
+        </NavLink>
+      </div>
+
+      <div className="mobile-side">
+        <NavLink to="/home" className="link">
+          <AiFillHome className="icon" />
+        </NavLink>
+
+        <NavLink to="/Videos" className="link">
+          <AiTwotoneLike className="icon" />
+        </NavLink>
+        <NavLink to="/Channel" className="link">
+          <MdSubscriptions className="icon" />
+        </NavLink>
+      </div>
+    </>
   );
 }

@@ -1,85 +1,84 @@
+body {
+  background-color: #56423d;
+}
 .contenair-videos {
-  display: flex;
-  direction: column;
-  height: 97vh;
-  width: 97.8vw;
-  border: red solid 2px;
+  width: 100%;
+
+  background-color: rgb(200, 200, 167);
+  padding: 40px 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .video-card {
-  flex-direction: column;
-  border: green solid 2px;
+  margin-bottom: 40px;
 }
-/* .side-bar {
-  background-color: #14203e;
-  padding: 40px;
-  gap: 20px 20px;
-
-  display: flex;
-  flex-direction: column;
-  border: yellow solid 2px;
+.card-image {
+  border: none;
+  height: 140px;
+  width: 250px;
 }
-.side-bar img {
-  width: 50px;
-} */
 
+.card-image-channel {
+  /* height: 160px; */
+  width: 160px;
+}
 .videos {
-  overflow-y: scroll;
-
-  justify-content: center;
   gap: 30px 30px;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  /* height: 62.8vh; */
-  background-color: black;
-  padding: 10px;
-  border: orange solid 2px;
+  justify-content: center;
 }
-/* .contenair-header {
-  border: black solid 2px;
-  flex-direction: row;
-} */
-/* .card-image {
-  width: 50%;
-  height: 50%;
-} */
-.bar-recherche {
-  border: orchid solid 2px;
-  padding: 40px;
-}
-.bar-recherche input {
-  background-image: url("/magnifying-glass-solid.svg");
-  background-repeat: no-repeat;
-  background-color: #d76c58;
-  width: 30%;
-  margin-left: 10%;
-  height: 23px;
-  border-radius: 10px;
-  border: none;
-}
-
-.info-video {
-  color: #d76c58 !important;
-}
-
 .info-video h3 {
-  font-weight: 400;
-  font-size: 1rem;
+  /* font-weight: 400; */
+  font-size: 0rem;
 }
-/* .infos-video h4 {
-  color: #d76c58;
-}
-.infos-video h5 {
-  color: #d76c58;
-} */
-
-.contenair-videos h3 {
-  width: 50%;
+.info-channel h4 {
+  color: #060609;
+  width: 0rem;
 }
 .Link {
+  overflow-wrap: break-word;
+  transition: all 0.9s ease-in-out;
+  color: #060609;
   text-decoration: none;
 }
 .playVideos {
   display: flex;
   justify-content: center;
+}
+@media (max-width: 520px) {
+  .card-image {
+    border: none;
+    width: 200px;
+    height: 100px;
+  }
+  .contenair-videos {
+    padding: 15px;
+  }
+  .videos {
+    gap: 50px;
+  }
+}
+@media (max-width: 1024px) {
+  .contenair-videos {
+    padding: 30px 7px;
+  }
+}
+@media (max-width: 768px) {
+  .contenair-videos {
+    padding: 35px 19px;
+  }
+}
+
+.like {
+  display: flex;
+  gap: 10px;
+}
+.likes {
+  gap: 34px;
+  display: flex;
+}
+
+* {
+  box-sizing: border-box;
 }

@@ -6,19 +6,20 @@
   background-color: #b9005b;
 } */
 body {
-  padding: auto;
-  background-color: #14203e;
+  /* background-color: #56423d; */
+  margin: 0;
+  padding: 0;
 }
 
-.contenair-main {
+/* .contenair-main {
   width: 78%;
   height: 438px;
   padding: 30px;
   background-color: black;
-  /* margin: 0 auto; */
+  
   margin-left: 18%;
-}
-.barre-recherche {
+} */
+/* .barre-recherche {
   background-color: #ff7c7c;
   background-image: url("/🦆\ icon\ _Search_.svg");
   background-repeat: no-repeat;
@@ -39,4 +40,10 @@ body {
 }
 .contenair-icons img {
   width: 30px;
+} */
+
+.app-page {
+  height: calc(99vh - 80px);
+  display: flex;
+  overflow: hidden;
 }

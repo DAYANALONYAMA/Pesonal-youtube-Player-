@@ -9,8 +9,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const clientId =
-  "75561947803-50o77b5j1s3e3g8p84fmhln95d7da99u.apps.googleusercontent.com";
+const clientId = import.meta.env.VITE_APP_CLIEND_ID;
 
 export const Login = () => {
   const [loged, setloged] = useState(false);
@@ -89,37 +88,23 @@ export const Login = () => {
     });
   };
 
-  // if (user) {
-  //   return (
-  //     <div className="container">
-  //       <UserCard user={user} />
-  //       <div id="" className="btn logout" onClick={signOut}>
-  //         Logout
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
-  // Ahh
   console.log(loged);
   return (
     <>
-      <div className="container-login">
-        <div className="container-text">
-          <h1 className="text-welcome">welcome back</h1>
-          <h1 className="Titus">TitusSlow</h1>
-        </div>
-        <div className="Contenair-btn">
-          <div
-            id="customBtn"
-            className="btn-login
-      "
-          >
-            <button>Login</button>
+      <div className="content">
+        <div className="container-login">
+          <div className="container-text">
+            <h1 className="text-welcome">welcome back</h1>
+            <h1 className="Titus">TitusSlow</h1>
           </div>
-          {/* </div> */}
-          <div className="btn-logout" onClick={() => signOut()}>
-            <button>Logout</button>
+          <div className="Contenair-btn">
+            <div
+              id="customBtn"
+              className="btn-login
+      "
+            >
+              <button>Login</button>
+            </div>
           </div>
         </div>
       </div>

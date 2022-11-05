@@ -3,15 +3,15 @@ import { SideBar } from "./SideBar";
 import { ContentContext } from "./UseContex";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-
-const API = "AIzaSyDwekjqZuYGZgLhG8hRc3rzv-e6oNxYpsk";
+import { Searchbar } from "./Searchbar";
+import "./Videos.css";
 
 export function Channel() {
   const { accessToken } = useContext(ContentContext);
   const [channel, setChannel] = useState([]);
   useEffect(() => {
     fetch(
-      `https://youtube.googleapis.com/youtube/v3/subscriptions?part=snippet%2CcontentDetails&maxResults=15&mine=true&key=${API}`,
+      `https://youtube.googleapis.com/youtube/v3/subscriptions?part=snippet%2CcontentDetails&maxResults=15&mine=true&key={process.env.REACT_APP_KEY}`,
       {
         method: "GET",
         headers: new Headers({ Authorization: `Bearer ${accessToken}` }),
@@ -26,25 +26,35 @@ export function Channel() {
   console.log(channel);
   return (
     <>
-      <div className="contenair-videos">
-        <div className="video-card">
-          <SideBar />
-          {channel &&
-            channel.map((data, index) => {
-              return (
-                <div key={index}>
-                  <Link
-                    to={`/VideosChannel/${data.snippet.resourceId.channelId}`}
-                  >
-                    <img src={data.snippet.thumbnails.default.url} alt="" />
-                  </Link>
-                  <div className="info-channel">
-                    <h4>{data.snippet.title} </h4>
-                    {/* <h3>{data.snippet.description} </h3> */}
-                  </div>
-                </div>
-              );
-            })}
+      <Searchbar />
+      <div className="app-page">
+        <SideBar />
+
+        <div className="contenair-videos">
+          <div className="video-card">
+            <div className="videos">
+              {channel &&
+                channel.map((data, index) => {
+                  return (
+                    <div key={index}>
+                      <Link
+                        to={`/VideosChannel/${data.snippet.resourceId.channelId}`}
+                        className="lien"
+                      >
+                        <img
+                          src={data.snippet.thumbnails.medium.url}
+                          alt=""
+                          className="card-image-channel"
+                        />
+                      </Link>
+                      <div className="info-video">
+                        <h4>{data.snippet.title} </h4>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
         </div>
       </div>
     </>

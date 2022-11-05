@@ -11,7 +11,7 @@ export default function SearchResul() {
   const API = "AIzaSyDwekjqZuYGZgLhG8hRc3rzv-e6oNxYpsk";
   useEffect(() => {
     fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${id}&key=${API}`,
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${id}&key={import.meta.env.VITE_APP_KEY }`,
       {
         method: "GET",
         headers: new Headers({ Authorization: `Bearer ${accessToken}` }),
@@ -28,31 +28,49 @@ export default function SearchResul() {
 
   return (
     <>
-      <main className="card-main">
-        {videofind.map((data, index) => {
-          return (
-            <Link to={`/VideosPlaying/${data.id.videoId}/`} className="link">
-              <div key={index}>
-                <img
-                  src={data.snippet.thumbnails.medium.url}
-                  alt=""
-                  className="card-image"
-                />
-                <div className="video-details">
-                  <h3>{data.snippet.title}</h3>
-                  <div className="chanel-info">
-                    <div className="chanel-info-details">
-                      <div className="chanel-info-details-more"></div>
+      {/* <div className="app-page-search"> */}
+      <div className="contenair-videos">
+        <div className="video-card">
+          <div className="videos">
+            {/* <main className="video-card">
+            <div className="videos"> */}
+            {videofind.map((data, index) => {
+              return (
+                <Link
+                  className="Link"
+                  to={`/VideosPlaying/${data.id.videoId}/`}
+                >
+                  <div key={index}>
+                    <img
+                      src={data.snippet.thumbnails.medium.url}
+                      alt=""
+                      className="card-image"
+                    />
+                    <div className="info-video">
+                      <h3>{data.snippet.title}</h3>
                       <h5>{moment(data.snippet.publishedAt).fromNow()}</h5>
                       <h4>{data.snippet.channelTitle}</h4>
+                      {/* <div className="likes">
+                          <div className="like">
+                            <AiOutlineLike />
+                            <span>{data.statistics.likeCount} </span>
+                          </div>
+                          <div className="like">
+                            <GrView />
+                            <span>{data.statistics.viewCount} </span>
+                          </div>
+                        </div> */}
                     </div>
                   </div>
-                </div>
-              </div>
-            </Link>
-          );
-        })}
-      </main>
+                </Link>
+              );
+            })}
+            {/* </div>
+          </main> */}
+          </div>
+        </div>
+      </div>
+      {/* </div> */}
     </>
   );
 }

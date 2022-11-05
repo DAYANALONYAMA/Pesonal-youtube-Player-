@@ -6,14 +6,16 @@ import { Link } from "react-router-dom";
 import { SideBar } from "./SideBar";
 import VideosPlaying from "./VideosPlaying";
 import { Searchbar } from "./Searchbar";
+import { AiOutlineLike } from "react-icons/ai";
+import { GrView } from "react-icons/gr";
+import "./Videos.css";
 
-const API = "AIzaSyDwekjqZuYGZgLhG8hRc3rzv-e6oNxYpsk";
 export function Home() {
   const { accessToken } = useContext(ContentContext);
   const [videos, setVideo] = useState([]);
   useEffect(() => {
     fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=10&chart=mostPopular&regionCode=US&key=${API}`,
+      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=100&chart=mostPopular&regionCode=US&key={process.env.REACT_APP_KEY}`,
       {
         method: "GET",
         headers: new Headers({ Authorization: `Bearer ${accessToken}` }),
@@ -28,29 +30,43 @@ export function Home() {
   console.log(videos);
   return (
     <>
-      <div className="contenair-videos">
+      <Searchbar />
+      <div className="app-page">
         <SideBar />
-        <Searchbar />
-        <div className="videos">
-          {videos &&
-            videos.map((data, index) => {
-              return (
-                <Link className="Link" to={`/VideosPlaying/${data.id}`}>
-                  <div key={index}>
-                    <img
-                      src={data.snippet.thumbnails.default.url}
-                      alt=""
-                      className="card-image"
-                    />
-                    <div className="info-channel">
-                      <h4>{data.snippet.title} </h4>
-                      <h4>{data.snippet.channelTitle} </h4>
-                      <h5>{data.snippet.publishedAt} </h5>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+        <div className="contenair-videos">
+          <div className="video-card">
+            <div className="videos">
+              {videos &&
+                videos.map((data, index) => {
+                  return (
+                    <Link className="Link" to={`/VideosPlaying/${data.id}`}>
+                      <div key={index}>
+                        <img
+                          src={data.snippet.thumbnails.medium.url}
+                          alt=""
+                          className="card-image"
+                        />
+                        <div className="info-video">
+                          <h3>{data.snippet.title} </h3>
+                          <h4>{data.snippet.channelTitle} </h4>
+                          <h5>{data.snippet.publishedAt} </h5>
+                          <div className="likes">
+                            <div className="like">
+                              <AiOutlineLike />
+                              <span>{data.statistics.likeCount} </span>
+                            </div>
+                            <div className="like">
+                              <GrView />
+                              <span>{data.statistics.viewCount} </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+            </div>
+          </div>
         </div>
       </div>
     </>
