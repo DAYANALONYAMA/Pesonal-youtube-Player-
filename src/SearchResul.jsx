@@ -32,8 +32,6 @@ export default function SearchResul() {
       <div className="contenair-videos">
         <div className="video-card">
           <div className="videos">
-            {/* <main className="video-card">
-            <div className="videos"> */}
             {videofind.map((data, index) => {
               return (
                 <Link
@@ -50,16 +48,6 @@ export default function SearchResul() {
                       <h3>{data.snippet.title}</h3>
                       <h5>{moment(data.snippet.publishedAt).fromNow()}</h5>
                       <h4>{data.snippet.channelTitle}</h4>
-                      {/* <div className="likes">
-                          <div className="like">
-                            <AiOutlineLike />
-                            <span>{data.statistics.likeCount} </span>
-                          </div>
-                          <div className="like">
-                            <GrView />
-                            <span>{data.statistics.viewCount} </span>
-                          </div>
-                        </div> */}
                     </div>
                   </div>
                 </Link>

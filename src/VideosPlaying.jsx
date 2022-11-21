@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import "./Videos.css";
+import "./styleCss/Videos.css";
 
 function VideosPlaying() {
   const { id } = useParams();

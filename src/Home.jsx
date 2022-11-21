@@ -2,15 +2,17 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { ContentContext } from "./UseContex";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { SideBar } from "./SideBar";
 import VideosPlaying from "./VideosPlaying";
 import { Searchbar } from "./Searchbar";
 import { AiOutlineLike } from "react-icons/ai";
 import { GrView } from "react-icons/gr";
-import "./Videos.css";
+import "./styleCss//Videos.css";
 
 export function Home() {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   const { accessToken } = useContext(ContentContext);
   const [videos, setVideo] = useState([]);
   useEffect(() => {
@@ -28,6 +30,11 @@ export function Home() {
       });
   }, [accessToken]);
   console.log(videos);
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, [navigate, token]);
   return (
     <>
       <Searchbar />

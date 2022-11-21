@@ -2,11 +2,13 @@ import react, { useEffect, useState } from "react";
 import { SideBar } from "./SideBar";
 import { ContentContext } from "./UseContex";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Searchbar } from "./Searchbar";
-import "./Videos.css";
+import "./styleCss/Videos.css";
 
 export function Channel() {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   const { accessToken } = useContext(ContentContext);
   const [channel, setChannel] = useState([]);
   useEffect(() => {
@@ -24,6 +26,13 @@ export function Channel() {
       });
   }, [accessToken]);
   console.log(channel);
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, [navigate, token]);
+
   return (
     <>
       <Searchbar />

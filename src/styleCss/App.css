@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app-page {
+  height: calc(99vh - 80px);
+  display: flex;
+  overflow: hidden;
+}

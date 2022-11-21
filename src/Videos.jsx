@@ -1,9 +1,9 @@
 import react, { useEffect, useState } from "react";
 import { ContentContext } from "./UseContex";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SideBar } from "./SideBar";
-import "./Videos.css";
+import "./styleCss//Videos.css";
 import { Searchbar } from "./Searchbar";
 import { AiOutlineLike } from "react-icons/ai";
 import { GrView } from "react-icons/gr";
@@ -11,6 +11,8 @@ import { GrView } from "react-icons/gr";
 // const API = "AIzaSyDwekjqZuYGZgLhG8hRc3rzv-e6oNxYpsk";
 
 function Videos() {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   const { accessToken } = useContext(ContentContext);
   const [videos, setVideo] = useState([]);
   useEffect(() => {
@@ -28,6 +30,13 @@ function Videos() {
       });
   }, [accessToken]);
   console.log(videos);
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, [navigate, token]);
+
   return (
     <>
       <Searchbar />
