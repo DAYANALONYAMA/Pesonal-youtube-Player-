@@ -8,14 +8,19 @@ import { updateLanguageServiceSourceFile } from "typescript";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import router from "./config/webApi";
 
 const clientId = import.meta.env.VITE_APP_CLIEND_ID;
-
+const headers = {
+  "Content-Type": "application/json",
+};
 export const Login = () => {
   const [loged, setloged] = useState(false);
   const [user, setUser] = useState(null);
   const { setAccessToken } = useContext(ContentContext);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setloged(true);
@@ -52,14 +57,40 @@ export const Login = () => {
     }
   }, [user]);
 
+  const addUsers = ({ name, profileImg, email }) => {
+    axios
+      .post(
+        router.addUser,
+        {
+          name,
+          profileImg,
+          email,
+        },
+        {
+          headers: headers,
+        }
+      )
+      .then((response) => {})
+      .catch((error) => {
+        console.error(error.response.data.message);
+      });
+  };
+
   const updateUser = (currentUser) => {
-    const name = currentUser.getBasicProfile().getName();
-    const profileImg = currentUser.getBasicProfile().getImageUrl();
+    const name = currentUser.getBasicProfile().getName(),
+      profileImg = currentUser.getBasicProfile().getImageUrl(),
+      email = currentUser.getBasicProfile().cu;
     setAccessToken(currentUser.xc.access_token);
-    setUser({
+
+    const user = {
       name: name,
       profileImg: profileImg,
-    });
+      email: email,
+    };
+
+    addUsers(user);
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
     navigate("/Home");
   };
 
@@ -68,12 +99,11 @@ export const Login = () => {
       element,
       {},
       (googleUser) => {
-        console.log(googleUser);
         localStorage.setItem("token", googleUser.xc.access_token);
         updateUser(googleUser);
       },
       (error) => {
-        console.log(JSON.stringify(error));
+        console.error(JSON.stringify(error));
       }
     );
   };

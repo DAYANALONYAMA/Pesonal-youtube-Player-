@@ -14,8 +14,8 @@ export function Searchbar() {
   const navigate = useNavigate();
   const [input, setInput] = useState("");
   const accessToken = sessionStorage.getItem("");
-  const profileImg = JSON.parse(sessionStorage.getItem("profilImage"));
-  console.log(profileImg);
+  // const user = JSON.parse(localStorage.getItem("user"));
+  // console.log(user);
   const itemImg = localStorage.getItem("item");
   console.log(itemImg);
   const handChange = (event) => {
@@ -40,32 +40,28 @@ export function Searchbar() {
   return (
     <div className="container-header-liked">
       <div className="header-keft">
-        {/* <img src="/iconmonstr-menu-thin.svg"></img> */}
         <h1 className="header-logo">TitusSlow</h1>
       </div>
       <div className="header-input">
         <form onSubmit={onSubmit}>
-          {/* <div className="input-btn"> */}
           <input
             onChange={handChange}
             type="text"
             placeholder="Search..."
             className="search-bar"
           />
-          {/* <button className="search-btn" type="submit"> */}
+
           <AiOutlineSearch className="icon-search" />
-          {/* </button> */}
-          {/* </div> */}
         </form>
       </div>
-
-      <img src={profileImg} alt="" />
-      {/* </div> */}
+      {/* <div className="img-name">
+        <img src={user?.profileImg} alt="" />
+        <p>{user?.name} </p>
+      </div> */}
 
       <div onClick={() => signOut()}>
         <button className="logout">Logout</button>
       </div>
-      {/* </nav> */}
     </div>
   );
 }

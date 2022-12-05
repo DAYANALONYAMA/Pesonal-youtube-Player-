@@ -22,6 +22,20 @@
 .link:first-child {
   margin-top: 40px;
 }
+.img-name {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  padding: 6px 11px;
+}
+.img-name img {
+  border-radius: 50px;
+  width: 40px;
+}
+.img-name p {
+  color: black;
+  margin-left: 10px;
+}
 
 .icon {
   color: aliceblue;
@@ -54,6 +68,10 @@
 }
 
 @media (max-width: 520px) {
+  .img-user {
+    border-radius: 50px;
+    width: 30px;
+  }
   .side-bar {
     display: none;
   }

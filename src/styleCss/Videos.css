@@ -4,7 +4,7 @@ body {
 .contenair-videos {
   width: 100%;
 
-  background-color: rgb(200, 200, 167);
+  background-color: #c8c8a7;
   padding: 40px 20px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -82,3 +82,12 @@ body {
 * {
   box-sizing: border-box;
 }
+
+/* Videos Player comments css*/
+.container-comments {
+  justify-content: center;
+
+  display: flex;
+}
+/* .input-comment {
+} */
