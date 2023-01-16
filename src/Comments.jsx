@@ -2,6 +2,12 @@ import "./styleCss/Videos.css";
 import react, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { AiOutlineLike } from "react-icons/ai";
+import Like from "./Like";
+// import { Mention, MentionsInput } from "react-mentions";
+
+// import { useContext } from "react";
+// import { ContentContext } from "./UseContex";
 
 const Comments = () => {
   const { id } = useParams();
@@ -9,6 +15,7 @@ const Comments = () => {
   const [comments, setComments] = useState();
   const [addcomment, setAddcomment] = useState();
   const [newComment, setNewComment] = useState(true);
+  // const [liked, setLiked] = useState(false);
   const getComments = () => {
     fetch("http://localhost:3002/api/stuff")
       .then((response) => {
@@ -24,6 +31,7 @@ const Comments = () => {
       .post("http://localhost:3002/comment/addcomment", {
         comment: input,
         video: id,
+        // userId: id,
       })
       .then((res) => {
         setInput("");
@@ -39,6 +47,7 @@ const Comments = () => {
   useEffect(() => {
     getComments();
   }, [newComment]);
+
   return (
     <div className="container-comments">
       <div className="input-comment">
@@ -53,8 +62,8 @@ const Comments = () => {
       </div>
       <div className="comments">
         {comments &&
-          comments.map((data) => {
-            return <p>{data.comment}</p>;
+          comments.map((data, i) => {
+            return <Like data={data} key={i} />;
           })}
         {addcomment &&
           addcomment.map((res) => {

@@ -21,6 +21,7 @@ export function Searchbar() {
   const handChange = (event) => {
     setInput(event.target.value);
   };
+
   console.log(input);
   const signOut = () => {
     const auth2 = gapi.auth2.getAuthInstance();

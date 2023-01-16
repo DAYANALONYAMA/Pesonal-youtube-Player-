@@ -10,6 +10,12 @@ import { Channel } from "./Channel";
 import { VideosChannel } from "./VideosChannel";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SearchResul from "./SearchResul";
+import Comments from "./Comments";
+import socketIO from "socket.io-client";
+import Like from "./Like";
+
+const socket = socketIO.connect("http://localhost:3002");
+console.log(socket);
 
 const clientId =
   "75561947803-50o77b5j1s3e3g8p84fmhln95d7da99u.apps.googleusercontent.com";
@@ -18,13 +24,19 @@ export function App() {
   const [loginState, setLoginState] = useState(false);
   const [imgUrl, setImageUrl] = useState();
   const [accessToken, setAccessToken] = useState();
+  const [currentComments, setCurrentComments] = useState();
+
   useEffect(() => {
     function start() {
       gapi.client.init({ clientId: clientId, scope: "" });
     }
 
     gapi.load("client:auth2", start);
-  });
+  }, []);
+  // useEffect(() => {
+  //   // const socket = socketIO.connect("http://localhost:3001");
+  //   // console.log(socket);
+  // }, []);
 
   const Layout = ({ children }) => {
     return (
@@ -48,6 +60,8 @@ export function App() {
             setImageUrl,
             accessToken,
             setAccessToken,
+            currentComments,
+            setCurrentComments,
           }}
         >
           <Routes>
@@ -59,6 +73,8 @@ export function App() {
             <Route path="/channel" element={<Channel />} />
             <Route path="/VideosChannel/:id" element={<VideosChannel />} />
             <Route path="/searchResul/:id" element={<SearchResul />} />
+            <Route path="/comments" element={<Comments />} />
+            <Route path="/like" element={<Like />} />
           </Routes>
 
           {/* <Login />
