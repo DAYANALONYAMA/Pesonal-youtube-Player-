@@ -1,6 +1,10 @@
 const http = require("http");
 const app = require("./app");
 
+// io.on("connection", (socket) => {
+//   console.log(`Connecté au client ${socket.id}`);
+// });
+
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
 
